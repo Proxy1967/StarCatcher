@@ -5,20 +5,26 @@ using UnityEngine.InputSystem;
 public class BasketController : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    private float horizontalLimit;
     private InputAction moveAction;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        float cameraHeight = Camera.main.orthographicSize * 2;
+        float cameraAspect = Camera.main.aspect;
+        float cameraWidth = cameraHeight * cameraAspect;
+        float basketHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
+        horizontalLimit = cameraWidth / 2 - basketHalfWidth;
+
         moveAction = InputSystem.actions.FindAction("Move");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 basketPosition = transform.position;
         basketPosition.x += moveInput.x * Time.deltaTime * speed;
-        transform.position = basketPosition; 
-        Debug.Log(moveInput.x);
+        basketPosition.x = Mathf.Clamp(basketPosition.x, -horizontalLimit, horizontalLimit);
+        transform.position = basketPosition;
     }
 }
