@@ -3,9 +3,12 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     [SerializeField] private float fallingSpeed = 6f;
+    private float verticalLimit;
     void Start()
     {
-        
+        float cameraHalfHeight = Camera.main.orthographicSize;
+        float objectHalfHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+        verticalLimit = cameraHalfHeight + objectHalfHeight;
     }
 
     void Update()
@@ -14,5 +17,9 @@ public class FallingObject : MonoBehaviour
         position.y -= fallingSpeed * Time.deltaTime;
         transform.position = position;
         
+        if (position.y <= -verticalLimit)
+        {
+            Destroy(gameObject);
+        }
     }
 }

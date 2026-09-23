@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class BasketController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 12f;
     private float horizontalLimit;
     private InputAction moveAction;
 
