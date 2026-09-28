@@ -22,4 +22,13 @@ public class FallingObject : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.AddScore();
+            Destroy(gameObject);
+        }
+    }
 }
