@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7374572625995372153}
-  - component: {fileID: -1787007325428891289}
   - component: {fileID: 3324846461126649375}
+  - component: {fileID: -7094051591833457309}
   - component: {fileID: 3559808087332892952}
   - component: {fileID: -7632607336556557541}
   m_Layer: 0
-  m_Name: Star
+  m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,19 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1787007325428891289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7493131988174340310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7edfbc4b323074fed90cd1bca9c98422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Star
-  fallingSpeed: 6
 --- !u!212 &3324846461126649375
 SpriteRenderer:
   serializedVersion: 2
@@ -98,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.990566, g: 0.9451159, b: 0.0046724924, a: 1}
+  m_Color: {r: 0.99215686, g: 0.0039215623, b: 0.15902509, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,6 +94,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-7094051591833457309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493131988174340310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c55695ad1346d71f9f25ffc4b11a5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bomb
+  fallingSpeed: 6
 --- !u!58 &3559808087332892952
 CircleCollider2D:
   m_ObjectHideFlags: 0

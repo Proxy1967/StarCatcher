@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FallingObject : MonoBehaviour
+public abstract class FallingObject : MonoBehaviour
 {
     [SerializeField] private float fallingSpeed = 6f;
     private float verticalLimit;
@@ -27,8 +27,10 @@ public class FallingObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.AddScore();
+            OnCaught();
             Destroy(gameObject);
         }
     }
+
+    protected abstract void OnCaught();
 }

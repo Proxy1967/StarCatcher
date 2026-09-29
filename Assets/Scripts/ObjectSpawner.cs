@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject starPrefab;
+    [SerializeField] private GameObject objectPrefab;
+    [SerializeField] private float spawnInterval;
     private float horizontalLimit;
     private float spawnY;
     private float timer;
@@ -12,18 +13,18 @@ public class ObjectSpawner : MonoBehaviour
         float cameraHeight = Camera.main.orthographicSize * 2;
         float cameraAspect = Camera.main.aspect;
         float cameraWidth = cameraHeight * cameraAspect;
-        float starHalfWidth = starPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
-        horizontalLimit = cameraWidth / 2 - starHalfWidth;
-        spawnY = cameraHeight / 2 + starHalfWidth;
+        float objectHalfWidth = objectPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
+        horizontalLimit = cameraWidth / 2 - objectHalfWidth;
+        spawnY = cameraHeight / 2 + objectHalfWidth;
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 1f) {
+        if (timer >= spawnInterval) {
             float spawnX = Random.Range(-horizontalLimit,horizontalLimit);
             Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0);
-            Instantiate(starPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
             timer = 0f;
         }
         
