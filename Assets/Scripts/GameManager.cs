@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int lives = 3;
+    [SerializeField] UIManager uiManager;
     public static GameManager Instance;
     private int score; 
     
@@ -12,25 +14,37 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void Start()
+    {
+        uiManager.SetScore(score);
+        uiManager.SetLives(lives);
+    }
+
     public void AddScore()
     {
         score++;
-        Debug.Log("Score: " + score);
+        uiManager.SetScore(score);
     }
 
     public void LoseLife()
     {
         lives--;
-        Debug.Log("Remaining lives: " + lives);
+        uiManager.SetLives(lives);
         if (lives <= 0)
         {
-            GameOver();
+            GameOver(score);
         }
     }
 
-    private void GameOver()
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void GameOver(int score)
     {
         Time.timeScale = 0f;
-        Debug.Log("GAME OVER");
+        uiManager.ShowGameOver(score);
     }
+
 }
