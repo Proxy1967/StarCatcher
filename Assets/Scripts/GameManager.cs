@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int lives = 3;
     [SerializeField] UIManager uiManager;
+    [SerializeField] private BasketFlash basketFlash;
     public static GameManager Instance;
     private int score; 
     
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         lives--;
         uiManager.SetLives(lives);
+        basketFlash.Flash();
         if (lives <= 0)
         {
             GameOver(score);
